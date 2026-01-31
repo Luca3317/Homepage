@@ -1,14 +1,14 @@
 import type { IconMap, SocialLink, Site } from '@/types'
 
 export const SITE: Site = {
-  title: 'Your Blog Name',
+  title: 'Luca\'s Website',
   description:
-    'A brief description of your blog. This will be used in meta tags and social sharing.',
-  href: 'https://yourdomain.com',
-  author: 'your-author-id',
+    'I have multiple years of professional experience developing multiplayer games and tools in Unity.\n This is my personal website where I share my resume, blog posts, and projects.',
+  href: 'https://luca3317.dev',
+  author: 'Luca Weist',
   locale: 'en-US',
-  featuredPostCount: 2,
-  postsPerPage: 6,
+  featuredPostCount: 0,
+  postsPerPage: 0,
 }
 
 // Google Analytics
@@ -27,7 +27,7 @@ export const UMAMI = {
 // Get your shortname from https://disqus.com/admin/settings/general/
 // Set it as an environment variable: PUBLIC_DISQUS_SHORTNAME=your-shortname
 export const DISQUS = {
-  shortname: import.meta.env.PUBLIC_DISQUS_SHORTNAME || '',
+  shortname: import.meta.env.PUBLIC_DISQUS_SHORTNAME || '', 
 }
 
 // Brevo Newsletter
