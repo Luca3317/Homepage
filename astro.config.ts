@@ -20,7 +20,7 @@ import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
  site: 'https://luca3317.dev', 
-  base: '/new-test',
+  base: '/Homepage',
   output: 'static',
   // Static output - API routes are handled by Cloudflare Pages Functions in /functions folder
   integrations: [
