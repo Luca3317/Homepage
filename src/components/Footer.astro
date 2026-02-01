@@ -32,61 +32,6 @@ const isExternalLink = (href: string) => {
         </div>
       </div>
 
-      <!-- Subtle Separator -->
-      <div class="h-px bg-border/30" aria-hidden="true"></div>
-
-      <!-- Main Footer Content -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-        <!-- Navigation -->
-        <div>
-          <h4 class="text-sm font-semibold mb-3 text-foreground">Navigation</h4>
-          <nav class="flex flex-col gap-2">
-            {NAV_LINKS.map((item) => {
-              const isExternal = isExternalLink(item.href)
-              const isInsideLink = item.label.toLowerCase() === 'inside'
-              return (
-                <Link 
-                  href={item.href} 
-                  class={isInsideLink 
-                    ? "text-sm text-primary hover:text-primary/80 capitalize transition-colors flex items-center gap-1.5 group font-medium" 
-                    : "text-sm text-muted-foreground hover:text-primary capitalize transition-colors flex items-center gap-1.5 group"}
-                >
-                  <span>{item.label}</span>
-                  {isExternal && (
-                    <Icon 
-                      name="lucide:external-link" 
-                      class={isInsideLink 
-                        ? "size-3 opacity-80 flex-shrink-0 text-primary group-hover:opacity-100 transition-opacity" 
-                        : "size-3 opacity-70 flex-shrink-0 group-hover:opacity-100 group-hover:text-primary transition-colors"} 
-                      aria-hidden="true"
-                    />
-                  )}
-                </Link>
-              )
-            })}
-          </nav>
-        </div>
-
-        <!-- Legal -->
-        <div>
-          <h4 class="text-sm font-semibold mb-3 text-foreground">Legal</h4>
-          <nav class="flex flex-col gap-2">
-            <Link href="/privacy" class="text-sm text-muted-foreground hover:text-primary transition-colors">
-              Privacy Policy
-            </Link>
-            <Link href="/terms" class="text-sm text-muted-foreground hover:text-primary transition-colors">
-              Terms of Service
-            </Link>
-          </nav>
-        </div>
-
-        <!-- Connect -->
-        <div>
-          <h4 class="text-sm font-semibold mb-3 text-foreground">Connect</h4>
-          <SocialIcons links={SOCIAL_LINKS} />
-        </div>
-      </div>
-
       <!-- Separator -->
       <div class="h-px bg-border/60" aria-hidden="true"></div>
 

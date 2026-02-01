@@ -43,6 +43,10 @@ export const BREVO = {
 
 export const NAV_LINKS: SocialLink[] = [
   {
+    href: '/tmpeffects',
+    label: 'TMPEffects',
+  },
+  {
     href: '/blog',
     label: 'Blog',
   },
@@ -53,22 +57,6 @@ export const NAV_LINKS: SocialLink[] = [
 ]
 
 export const SOCIAL_LINKS: SocialLink[] = [
-  {
-    href: 'https://github.com/username',
-    label: 'GitHub',
-  },
-  {
-    href: 'https://twitter.com/username',
-    label: 'Twitter',
-  },
-  {
-    href: 'mailto:your@email.com',
-    label: 'Email',
-  },
-  {
-    href: '/rss.xml',
-    label: 'RSS',
-  },
 ]
 
 export const ICON_MAP: IconMap = {

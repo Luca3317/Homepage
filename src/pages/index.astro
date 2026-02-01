@@ -12,6 +12,9 @@ import { cn } from '@/lib/utils'
 import { SOCIAL_LINKS, ICON_MAP, SITE } from '@/consts'
 import type { SocialLink } from '@/types'
 
+import Home from "@/components/testhome.astro"; 
+import Contact from "@/components/contact.astro"; 
+
 // Error handling for fetching recent posts
 let latestPosts: Awaited<ReturnType<typeof getRecentPosts>> = []
 try {
@@ -55,6 +58,78 @@ const websiteSchema = {
   }
 }
 
+type ProjectItem = {
+  title: string
+  description: string
+  image?: string
+  link?: string
+}
+
+const projects : ProjectItem[] = [
+  {
+    title: 'TMPEffects',
+    description: 'Upgrade your Unity texts!\n'+
+    'With TMPEffects, you can easily animate your text over time, show and hide text character by character (with specialized animations), and raise events and execute commands '+
+    'at any given index, all of this just using custom rich text tags.\n' + 
+    'A powerful API allows you to create your own animations and commands, either as Monobehaviors (which allow you to easily reference scene objects) or as normal C# classes.',
+    image: 'Homepage/projects/tmpeffects.gif',
+    link: 'https://github.com/Luca3317/TMPEffects'
+  },
+  {
+    title: 'GameJam Entries',
+    description: 'My various entries for GameJams.\n'+
+    '• Horror Demo - Made in free time while working on my Bachelor\'s degree' +
+    'Complete (but unpolished) First person horror game controller\n' + 
+    '• Returned - Made in 9 days for the GameDev.tv Jam. Point and click puzzle adventure game.\n' + 
+    '• Endless Terminal Hacking - Made in 2 days for the MixJam 10. Recreation of the hacking minigame in the 3D Fallout games.',
+    image: 'Homepage/projects/gamejam.png',
+    link: 'https://luca3317.itch.io/'
+  },
+  {
+    title: 'OpenLibrary.NET',
+    description: 'An extensive C# library for interfacing with all stable APIs of OpenLibrary by the InternetArchive.\n\n' +
+    'Originally created as part of a bookstore shopping simulator',
+    image: 'Homepage/projects/openlibrary.png',
+    link: 'https://github.com/Luca3317/OpenLibrary.NET/'
+  },
+  {
+    title: 'University Projects',
+    description: '<b>Lab: "Ghidra PlugIn: Detecting unsecure functions</b>"\n' +
+    'Development of a plugin for Ghidra (a suite of reverse engineering tools developed by the NSA) that serves to automatically detect various categories of unsecure C functions in compiled programs\n' +
+    '(CWE-476, -125, -787, -416, and -415)\n\n' +
+    '<b>Bachelor\'s Thesis: "Performance Evaluation of Security Protocols in LibP2P Connections"</b>\n' +
+    'In-depth performance analysis of the various existing security protocols for LibP2P (a modular, open-source protocol stack and library for the development of peer-to-peer' +
+    ' networking applications).\n In the course of this, also an implementation of the Signal protocol compatible with LibP2P in Golang.'
+    ,
+    link: 'https://github.com/Luca3317/OpenLibrary.NET/'
+  },
+]
+
+type EducationItem = {
+  degree: string
+  institution: string
+  period: string
+  icon: string
+  key: string
+}
+
+const education: EducationItem[] = [
+  {
+    degree: 'B.Sc. in Computer Science',
+    institution: 'Rheinische Friedrich-Wilhelms-Universität Bonn (University of Bonn)',
+    period: '2018 - 2022',
+    icon: 'lucide:university',
+    key: 'Finished my Bachelor with a final grade of 1.3 • equiv. roughly to a GPA of 3.7'
+  },
+  {
+    degree: 'German Abitur',
+    institution: 'Ernst-Kalkuhl-Gymnasium Bonn',
+    period: '2018 - 2022',
+    icon: 'lucide:school',
+    key: ''
+  },
+]
+
 // Experience Timeline - Customize with your own experience
 type ExperienceItem = {
   role: string
@@ -63,35 +138,49 @@ type ExperienceItem = {
   current?: boolean
   icon: string
   key: string
+  game?: string
+  image?: string
+  link?: string
 }
 
 // Customize your experience here
 const experience: ExperienceItem[] = [
   {
-    role: 'Your Current Role',
-    company: 'Current Company',
-    period: '2022 - Present',
+    role: 'Junior - Intermediate Game Developer',
+    company: 'SmokeStack Studios',
+    period: 'Feb. 2025 - Present',
     current: true,
-    icon: 'lucide:briefcase',
-    key: 'Brief description of your current role and key achievements • Add more details about your responsibilities and accomplishments'
+    icon: 'lucide:flame',
+    game: "Aries - Virtual Training Simulations; training software for fire brigade operations and for school shooting incidents used by the departments in Texas",
+    key: 'Implemented a multitude of new functionality, such as AI-assisted analysis of communications made over the radio for adherence to the NIMS protocol, a physically-simulated growing firehose, dynamic audio occlusion, and many more • ' +
+    'Improved and bugfixed existing gameplay features, such as NPC interactions, NPC AI, dynamic smoke and room pressure systems, and many more • ' +
+    'Implemented a lot of systems utilizing Netcode (including some of the features mentioned above) • ' +
+    'Collaborated with a small international team, both asynchronously and synchronously',
+    image: 'Homepage/projects/aries.png',
+    link: 'https://www.smkstackstudios.com/aries'
   },
   {
-    role: 'Previous Role',
-    company: 'Previous Company',
-    period: '2020 - 2022',
-    icon: 'lucide:server',
-    key: 'Description of your previous role and achievements • Highlight key projects or responsibilities you had in this position'
+    role: 'Assistant Programmer',
+    company: 'Flufflesocket Studios',
+    game: 'Farseer\'s Domain - A simultaneous, turn-based MOBA, serving as a spiritual successor to Atlas Reactor',
+    period: 'Aug. 2024 - Feb. 2025',
+    icon: 'lucide:swords',
+    key: 'Implementing a multitude of new gameplay features, such as various new character abilities, lobby functionality, status effects, and more • ' +
+    'Maintained and bugfixed existing gameplay features and deeper engine systems • Collaborated with a larger, ~10 person team, both asynchronously and synchronously • ' +
+    'Also did the german localization for the game',
+    image: 'Homepage/projects/fdlogo.png',
+    link: 'https://www.farseersdomain.com'
   },
   {
-    role: 'Earlier Role',
-    company: 'Earlier Company',
-    period: '2018 - 2020',
-    icon: 'lucide:code',
-    key: 'Description of your earlier role and achievements • Show your career progression and growth over time'
+    role: 'Previous Hobbyist Experience',
+    company: '',
+    period: '',
+    icon: 'lucide:baby',
+    key: 'I have been programming (for university, and for fun) since 2017 and have been working with Unity since 2019'
   },
 ]
 ---
-<Layout class="max-w-4xl" transition:persist="home-layout">
+<Layout class="max-w-3xl" transition:persist="home-layout">
   <PageHead slot="head" title={SITE.title} fullTitle={true} />
   
   <!-- Schema Markup for SEO -->
@@ -99,66 +188,17 @@ const experience: ExperienceItem[] = [
   <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
   
-  <!-- Hero Section -->
-  <section class="relative overflow-hidden rounded-xl border" style="min-height: clamp(280px, 40vh, 400px);">
-    <!-- Gradient Background -->
-    <div class="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-background" aria-hidden="true"></div>
-    
-    <!-- Content -->
-    <div class="relative z-10 p-8 md:p-12">
-      <div class="flex flex-col gap-8">
-        <!-- Main Content -->
-        <div class="flex-1 min-w-0 space-y-6">
-          <!-- Heading -->
-          <div class="space-y-4" style="min-height: clamp(120px, 20vh, 180px);">
-            <h1 class="text-4xl sm:text-5xl md:text-6xl leading-[1.1] font-bold tracking-tight" style="font-variation-settings: 'wght' 700;">
-              Hi, Im Luca<br class="hidden sm:block" />
-              a <span class="text-primary">Game Developer</span>
-            </h1>
-            <p class="text-muted-foreground mt-4 leading-relaxed text-base md:text-lg max-w-xl" style="min-height: 3rem; white-space: pre-line;">
-              {SITE.description}
-            </p>
-          </div>
-          
-          <!-- CTA Buttons -->
-          <div class="flex flex-wrap items-center gap-3 pt-2">
-            <Link href="/blog" class={buttonVariants({ variant: 'default', size: 'lg' })}>
-              Read the blog
-              <Icon name="lucide:arrow-right" class="size-4" />
-            </Link>
-            <Link href="/about" class={buttonVariants({ variant: 'outline', size: 'lg' })}>
-              About me
-            </Link>
-          </div>
-          
-          <!-- Social Icons -->
-          <div class="pt-2">
-            <ul class="flex flex-wrap items-center gap-2" role="list">
-              {SOCIAL_LINKS.map(({ href, label }: SocialLink) => (
-                <li>
-                  <Link
-                    href={href}
-                    aria-label={label}
-                    title={label}
-                    class={buttonVariants({ variant: 'outline', size: 'icon' }) + ' backdrop-blur-sm bg-background/80'}
-                    external={href.startsWith('http') || href.startsWith('mailto:')}
-                  >
-                    <Icon
-                      name={
-                        ICON_MAP[label as keyof typeof ICON_MAP] ||
-                        'lucide:message-circle-question'
-                      }
-                      class="size-4"
-                    />
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+<section class="min-h-[calc(100vh-4rem)] flex flex-col justify-center pb-60 sm:pb-32 mb-12 sm:mb-24 relative">
+  <Home />
+  
+  {/* Scroll Indicator 
+      bottom-32: Moves it way up on mobile (approx 128px from bottom)
+      sm:bottom-12: Puts it back down on desktop
+  */}
+  <div class="absolute bottom-32 sm:bottom-12 left-1/2 -translate-x-1/2 animate-bounce text-muted-foreground/50">
+    <Icon name="lucide:chevron-down" class="size-6" />
+  </div>
+</section>
 
   <!-- Experience Timeline -->
   <section class="mt-8">
@@ -170,48 +210,196 @@ const experience: ExperienceItem[] = [
     </div>
     
     <div class="space-y-6">
-      {experience.map((exp, index) => (
+{experience.map((exp, index) => (
+  <div class={cn(
+    "relative rounded-xl transition-all duration-200 -mx-3 px-3 py-2",
+    exp.link ? "group hover:bg-muted/40 cursor-pointer" : "" // Only add hover/cursor if link exists
+  )}>
+    {/* The Stretched Link - Only renders if link is present */}
+    {exp.link && (
+      <a 
+        href={exp.link} 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        class="absolute inset-0 z-20"
+        aria-label={`View details for ${exp.role} at ${exp.company}`}
+      />
+    )}
+    
+    {/* Timeline Line (adjusted to work with the new padding) */}
+    {index < experience.length - 1 && (
+      <div class="absolute left-[23px] top-10 bottom-0 w-px bg-border" aria-hidden="true"></div>
+    )}
+
+    <div class="flex gap-4 relative z-10">
+      {/* Icon */}
+      <div class={`relative flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center ring-4 ring-background z-10 ${
+        exp.current ? "bg-primary text-primary-foreground shadow-lg shadow-primary/20" : "bg-muted text-muted-foreground"
+      }`}>
+        <Icon name={exp.icon} class="size-3.5" />
+      </div>
+
+      <div class="flex-1 pb-2 min-w-0">
+        <div class="flex justify-between items-start gap-4">
+          <div class="flex-1">
+            <h3 class={cn(
+              "font-semibold text-lg leading-tight transition-colors",
+              exp.link && "group-hover:text-primary" // Only change color if clickable
+            )}>
+              {exp.role}
+            </h3>
+            {exp.company !== "" && (
+              <p class="text-sm text-muted-foreground">
+                {exp.company} {exp.period && `· ${exp.period}`}
+              </p>
+            )}
+            {exp.game && (
+              <p class="text-sm font-medium text-foreground/80 italic mt-1 leading-snug">
+                {exp.game}
+              </p>
+            )}
+          </div>
+
+          {exp.image && (
+            <div class="shrink-0">
+              <img 
+                src={exp.image} 
+                alt="" 
+                class="max-w-[100px] sm:max-w-[150px] max-h-20 w-auto h-auto rounded-md object-contain"
+              />
+            </div>
+          )}
+        </div>
+
+        {/* BOTTOM ROW: Key */}
+        <p class="text-sm text-muted-foreground/90 leading-relaxed mt-3">
+          {exp.key}
+        </p>
+      </div>
+    </div>
+  </div>
+))}
+    </div>
+  </section>
+
+  <!-- Education Timeline -->
+  <section class="mt-8">
+    <div class="mb-6">
+      <h2 class="text-2xl font-semibold mb-2">Education</h2>
+      <p class="text-sm text-muted-foreground">
+      </p>
+    </div>
+    
+    <div class="space-y-6">
+      {education.map((ed, index) => (
         <div class="relative">
-          {index < experience.length - 1 && (
+          {index < education.length - 1 && (
             <div class="absolute left-[11px] top-8 bottom-0 w-px bg-border" aria-hidden="true"></div>
           )}
           
           <div class="flex gap-4">
             <div class={`relative flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center ring-4 ring-background z-10 ${
-              exp.current ? "bg-primary text-primary-foreground shadow-lg shadow-primary/20" : "bg-muted text-muted-foreground"
+                "bg-muted text-muted-foreground"
             }`}>
-              <Icon name={exp.icon} class="size-3.5" />
+              <Icon name={ed.icon} class="size-3.5" />
             </div>
             
-            <div class="flex-1 pb-2 min-w-0">
-              <div class="mb-1">
-                <h3 class="font-semibold text-lg leading-tight">{exp.role}</h3>
-                <p class="text-sm text-muted-foreground">
-                  {exp.company} · {exp.period}
-                </p>
-              </div>
-              <p class="text-sm text-muted-foreground/90 leading-relaxed mt-2">
-                {exp.key}
+          <div class="flex-1 pb-2 min-w-0">
+            <div class="mb-1">
+              <h3 class="font-semibold text-lg leading-tight">{ed.degree}</h3>
+              {/* Only render this paragraph if company is not empty */}
+              {ed.institution !== "" && (
+              <p class="text-sm text-muted-foreground">
+              {ed.institution}
               </p>
-            </div>
+          )}
+          </div>
+          <p class="text-sm text-muted-foreground/90 leading-relaxed mt-2">
+          {ed.key}
+          </p>
+      </div>
           </div>
         </div>
       ))}
     </div>
   </section>
 
-  <!-- Skills & Technologies (Optional) -->
-  <section class="mt-12">
-    <div class="mb-6">
-      <h2 class="text-2xl font-semibold mb-2">Skills & Technologies</h2>
-      <p class="text-sm text-muted-foreground">
-        Technologies and tools I work with
-      </p>
-    </div>
-    <ErrorBoundary client:load transition:persist="skills-error-boundary">
-      <Skills client:load transition:persist="skills-section" />
-    </ErrorBoundary>
-  </section>
+  <!-- Projects -->
+<section class="mt-12">
+  <div class="mb-6">
+    <h2 class="text-2xl font-semibold mb-2">Projects</h2>
+    <p class="text-sm text-muted-foreground">Some of the projects I've worked on</p>
+  </div>
+
+<div class="mt-8">
+  {projects.map((project, index) => (
+    <>
+      <div class={cn(
+        "relative group rounded-xl transition-all duration-200 -mx-3 px-3 py-4",
+        project.link ? "hover:bg-muted/40 cursor-pointer" : ""
+      )}>
+        {project.link && (
+          <a href={project.link} target="_blank" rel="noopener noreferrer" class="absolute inset-0 z-20" />
+        )}
+
+        <div class={cn(
+          "flex flex-col gap-8",
+          // Only apply row/reverse layout if there is an image. Otherwise, just a simple column.
+          project.image ? (index % 2 !== 0 ? "sm:flex-row-reverse items-center" : "sm:flex-row items-center") : "items-start"
+        )}>
+          
+          {/* Media Column - Only render if image exists */}
+          {project.image && (
+            <div class="w-full sm:w-72 shrink-0 flex items-center justify-center">
+              {project.image.endsWith('.mp4') || project.image.endsWith('.webm') ? (
+                <video src={project.image} autoplay loop muted playsinline class="w-full h-auto rounded-lg object-contain" />
+              ) : (
+                <img src={project.image} alt={project.title} class="w-full h-auto rounded-lg object-contain transition-transform duration-500 group-hover:scale-105" />
+              )}
+            </div>
+          )}
+
+          {/* Text Column - Takes full width if no image exists */}
+          <div class="flex-1 space-y-3 flex flex-col justify-center w-full">
+            <div class="space-y-1">
+              <h3 class={cn(
+                "font-bold text-2xl tracking-tight transition-all duration-300",
+                project.link ? "group-hover:text-primary group-hover:translate-x-1" : "text-foreground"
+              )}>
+                {project.title}
+              </h3>
+              <div class="h-0.5 w-10 bg-primary/20 rounded-full group-hover:w-16 transition-all duration-300"></div>
+            </div>
+
+            <div class="space-y-2">
+              {project.description.split('\n').map((line) => {
+                const trimmed = line.trim();
+                if (trimmed.startsWith('•') || trimmed.startsWith('-')) {
+                  return (
+                    <div class="flex gap-2 text-sm text-muted-foreground/90 ml-1">
+                      <span class="text-primary mt-1.5 h-1 w-1 shrink-0 rounded-full bg-primary/60" />
+                      <span set:html={trimmed.replace(/^[•-]\s*/, '')} />
+                    </div>
+                  );
+                }
+                return (
+                  <p class="text-sm text-muted-foreground/90 leading-relaxed" set:html={line} />
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {index < projects.length - 1 && (
+        <div class="py-2">
+          <div class="h-px w-full bg-gradient-to-r from-transparent via-border/40 to-transparent" />
+        </div>
+      )}
+    </>
+  ))}
+</div>
+</section>
 
   <!-- Latest from the blog -->
   {latestPosts && latestPosts.length > 0 && (
@@ -282,29 +470,9 @@ const experience: ExperienceItem[] = [
           </div>
         </div>
       </div>
+
+      <Contact />
       
-      <div class="text-center space-y-6">
-        <div class="space-y-2">
-          <h2 class="text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tight text-foreground leading-tight">
-            Let's connect
-          </h2>
-        </div>
-        <p class="text-lg sm:text-xl text-muted-foreground leading-relaxed max-w-xl mx-auto">
-          Have questions or want to collaborate? Feel free to reach out!
-        </p>
-        <div class="pt-4">
-          {SOCIAL_LINKS.find(link => link.label === 'Email') && (
-            <Link 
-              href={SOCIAL_LINKS.find(link => link.label === 'Email')!.href} 
-              class="group inline-flex items-center gap-2.5 px-7 py-3.5 rounded-lg bg-foreground text-background text-base font-medium hover:bg-foreground/90 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-            >
-              <Icon name="lucide:mail" class="size-4" />
-              <span>Get in touch</span>
-              <Icon name="lucide:arrow-right" class="size-4 transition-transform group-hover:translate-x-1" />
-            </Link>
-          )}
-        </div>
-      </div>
     </div>
   </section>
 </Layout>
